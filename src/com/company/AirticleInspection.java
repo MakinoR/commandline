@@ -9,4 +9,9 @@ public class AirticleInspection {
             System.out.println((i + 1) + ":" + article.get(i));
         }
     }
+
+//    public void newLine (){
+//        System.out.println("");
+//    }
+
 }

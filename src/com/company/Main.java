@@ -9,7 +9,7 @@ public class Main {
         //args→配列名、String[]→配列
         //標準入力を取得
 
-        ArrayList<String> article = new ArrayList<String>();
+        ArrayList<String> article = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         AirticleInspection art = new AirticleInspection();
 
