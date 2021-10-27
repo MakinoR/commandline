@@ -6,8 +6,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        //args→配列名、String[]→配列
-        //標準入力を取得
 
         ArrayList<String> article = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -16,17 +14,13 @@ public class Main {
         while (true) {
 
             System.out.println("行う操作を選択して「数字を」入力してください");
-            System.out.print("1: 追加 ");
-            System.out.print("2: 削除 ");
-            System.out.print("3: 確認 ");
-            System.out.println("4: 終了");
+            System.out.println("1: 追加\n2: 削除\n3: 確認 \n4: 終了");
 
             int item = sc.nextInt();
             sc.nextLine();
-            //改行文字が残るためここで空読みする→入れないと1でtitleに改行文字が入力されてしまう
-            //2の場合は別の処理が先に来てるので改行があっても正常に動作する
-
-//          int item = new Scanner(System.in).nextInt();
+            System.out.println("");
+            //改行文字が残るためここで空読みする→入れないと item = 1 でtitleに改行文字が入力されてしまう
+            //item = 2の場合は別の処理が先に来てるので改行があっても正常に動作する
 
             if(item == 4){
                 return;
@@ -40,12 +34,9 @@ public class Main {
                 String title = sc.nextLine();
                 article.add(title);
 
-                System.out.println("");
-                System.out.println("追加されました。記事の一覧を必ず確認してください");
-
-//                art.inspection(article);
-                System.out.println("");
-                continue;
+                System.out.println("\n追加されました。\n");
+//                continue;
+//                条件分岐されているからcontinueがなくても動作する
             }
 
             if (item == 2 && article.size() >0 ) {
@@ -54,29 +45,23 @@ public class Main {
 
                 int delete = sc.nextInt();
                 article.remove(delete - 1);
-                System.out.println("");
-                System.out.println("削除されました。記事の一覧を必ず確認してください");
+                System.out.println("\n削除されました。記事の一覧を確認してください\n");
 
-//                art.inspection(article);
-                System.out.println("");
-                continue;
+//                continue;
             } else if (article.size() == 0) {
-                System.out.println("記事がありません");
-                System.out.println("");
-                continue;
+                System.out.println("記事がありません\n");
+//                continue;
             }
 
             if (item == 3) {
                 art.inspection(article);
                 System.out.println("");
-                continue;
+//                continue;
             }
         }
     }
 }
 
-
-//課題
 //複数追加、複数削除は可能？
 //削除する記事、確認する記事がないとき
 //拡張for文を使うには
