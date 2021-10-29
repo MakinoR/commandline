@@ -7,54 +7,50 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<String> article = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        AirticleInspection art = new AirticleInspection();
+        Inspection inspection = new Inspection();
+        ArrayList<Article> articleList = new ArrayList<>();
+//        var articleList = new ArrayList<Article>();
 
         while (true) {
-
             System.out.println("行う操作を選択して「数字を」入力してください");
-            System.out.println("1: 追加\n2: 削除\n3: 確認 \n4: 終了");
+            System.out.println("1: 追加\n2: 削除\n3: 確認\n4: 終了");
 
-            int item = sc.nextInt();
+            int operation = sc.nextInt();
             sc.nextLine();
             System.out.println("");
-            //改行文字が残るためここで空読みする→入れないと item = 1 でtitleに改行文字が入力されてしまう
-            //item = 2の場合は別の処理が先に来てるので改行があっても正常に動作する
 
-            if(item == 4){
-                return;
-            } else if (item > 4 || item <= 0 ){
-                System.out.println("不正な入力です");
+            if (operation == Operation.QUIT.getId()) {
                 return;
             }
 
-            if (item == 1) {
+            if (operation == Operation.ADD.getId()) {
                 System.out.println("記事のタイトルを入力してください");
                 String title = sc.nextLine();
-                article.add(title);
+                System.out.println("記事の内容を入力してください");
+                String content = sc.nextLine();
+                Article add = new Article(title, content);
+                articleList.add(add);
 
                 System.out.println("\n追加されました。\n");
 //                continue;
-//                条件分岐されているからcontinueがなくても動作する
             }
 
-            if (item == 2 && article.size() >0 ) {
+            if (operation == Operation.DELETE.getId() && articleList.size() > 0) {
                 System.out.println("削除する記事を選んで番号を入力してください");
-                art.inspection(article);
+                inspection.showArticle(articleList);
 
                 int delete = sc.nextInt();
-                article.remove(delete - 1);
+                articleList.remove(delete - 1);
                 System.out.println("\n削除されました。記事の一覧を確認してください\n");
-
 //                continue;
-            } else if (article.size() == 0) {
+            } else if (articleList.size() == 0) {
                 System.out.println("記事がありません\n");
 //                continue;
             }
 
-            if (item == 3) {
-                art.inspection(article);
+            if (operation == Operation.CONFIRM.getId()) {
+                inspection.showArticle(articleList);
                 System.out.println("");
 //                continue;
             }
@@ -64,7 +60,6 @@ public class Main {
 
 //複数追加、複数削除は可能？
 //削除する記事、確認する記事がないとき
-//拡張for文を使うには
 //２の削除で指定されていない番号を入力した際の処理
 //クラスを使って見やすくする
 //終了はreturn でいいのか
